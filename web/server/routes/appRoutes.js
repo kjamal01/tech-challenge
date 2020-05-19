@@ -1,10 +1,9 @@
-var requireLogin = require("../middleware/requireLogin");
+const requireLogin = require("../middleware/requireLogin");
 const { user } = require("../models/user");
 const { album } = require("../models/album");
 const { photo } = require("../models/photo");
 
 module.exports = (app) => {
-
   app.get("/users", async (req, res) => {
     try {
       const users = await user.find();
@@ -82,8 +81,6 @@ module.exports = (app) => {
       res.status(400).send(error);
     }
   });
-
-  // search photo by id
 
   app.get("/photosInAlbum/:id", requireLogin, async (req, res) => {
     try {
